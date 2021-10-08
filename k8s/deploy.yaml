@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crud
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-deployment
+  namespace: crud
+  labels:
+    app: crud
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crud
+  template:
+    metadata:
+      labels:
+        app: crud
+    spec:
+      containers:
+      - image: nurhun/django_crud:v0.1
+        imagePullPolicy: IfNotPresent
+        name: crud
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            ephemeral-storage: 1Gi
+            memory: 200Mi
+          requests:
+            cpu: 10m
+            ephemeral-storage: 1Gi
+            memory: 100Mi
+        # securityContext:
+        #   capabilities:
+        #     drop:
+        #     - NET_RAW
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      # securityContext:
+        # seccompProfile:
+        #   type: RuntimeDefault
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crud
+  namespace: crud
+  labels:
+    app: crud
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    name: django-port
+  selector:
+    app: crud
+  type: LoadBalancer
