@@ -1,0 +1,19 @@
+requests
+# opentelemetry-api==1.5.0
+opentelemetry-api==1.10a0
+# opentelemetry-sdk==1.5.0
+opentelemetry-sdk==1.10a0
+# opentelemetry-distro==0.24b0
+# opentelemetry-instrumentation
+opentelemetry-instrumentation-django==0.24b0
+# opentelemetry-instrumentation-wsgi==0.24b0
+# opentelemetry-instrumentation-grpc==0.24b0
+opentelemetry-instrumentation-requests==0.24b0
+opentelemetry-exporter-otlp==1.10a0
+# opentelemetry-exporter-otlp-proto-http==1.5.0
+# opentelemetry-exporter-otlp-proto-grpc==1.5.0
+opentelemetry-exporter-prometheus==1.10a0
+opentelemetry-exporter-jaeger==1.5.0
+# psutil
+django-prometheus
+locust
