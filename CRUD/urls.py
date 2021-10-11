@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^crud/', include('crud.urls')),
     # url(r'^admin/', admin.site.urls),
     url('admin/', admin.site.urls),
-
+    url('', include('django_prometheus.urls')),
 ]
 
