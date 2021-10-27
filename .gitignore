@@ -4,7 +4,7 @@
 __pycache__
 db.sqlite3
 media
-.k8s/secrets.yaml
+k8s/secrets.yaml
 
 # Backup files # 
 *.bak 
