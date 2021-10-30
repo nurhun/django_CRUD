@@ -20,10 +20,10 @@ spec:
       prune: false
       # Self Heal if true, Argo will force the state defined in Git into the cluster when a deviation in the cluster is detected.
       selfHeal: true
-    # syncOptions:
-    # - Validate=true
-    # - CreateNamespace=true
-    # - PrunePropagationPolicy=foreground
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
     # - PruneLast=true
     # retry:
     #   limit: 5
