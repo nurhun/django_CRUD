@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -27,7 +28,7 @@ spec:
     spec:
       containers:
       - image: nurhun/django_crud:v0.2
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: crud
         ports:
         - containerPort: 8000
