@@ -19,7 +19,6 @@ pipeline {
             steps {
                 container('jnlp'){
                     sh "docker build . -t ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
                 }
             }
         }
@@ -28,6 +27,8 @@ pipeline {
             steps {
                 script {                  
                     withDockerRegistry(credentialsId: 'DockerHub') {
+                        sh "docker push ${IMAGE_NAME}"
+                        sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG}  ${IMAGE_NAME}:latest"
                         sh "docker push ${IMAGE_NAME}"
                     }
                 }
