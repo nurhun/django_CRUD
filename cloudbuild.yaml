@@ -25,7 +25,7 @@ options:
   env:
     - PROJECT_ID=nifty-bird-321722
     - REPOSITORY=django_crud
-    - TAG=$COMMIT_SHA
+    - TAG=v$BUILD_ID.$SHORT_SHA
 availableSecrets:
   secretManager:
     - versionName: projects/$PROJECT_ID/secrets/dockerhub-password/versions/1
@@ -33,56 +33,7 @@ availableSecrets:
     - versionName: projects/$PROJECT_ID/secrets/dockerhub-username/versions/1
       env: USERNAME
 
-
-
-# ---
-# build:
-#   images:
-#   - gcr.io/nifty-bird-321722/github.com/nurhun/django_crud:$COMMIT_SHA
-#   steps:
-#   - args:
-#     - build
-#     - -t
-#     - gcr.io/nifty-bird-321722/github.com/nurhun/django_crud:$COMMIT_SHA
-#     - .
-#     name: gcr.io/cloud-builders/docker
-# github:
-#   name: django_crud
-#   owner: nurhun
-#   push:
-#     branch: ^master$
-# name: crud
-
-
-# steps:
-# - args:
-#   - build
-#   - --no-cache
-#   - -t
-#   - $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
-#   - .
-#   - -f
-#   - Dockerfile
-#   id: Build
-#   name: gcr.io/cloud-builders/docker
-# - args:
-#   - push
-#   - $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
-#   id: Push
-#   name: gcr.io/cloud-builders/docker
-# - args:
-#   - run
-#   - services
-#   - update
-#   - $_SERVICE_NAME
-#   - --platform=managed
-#   - --image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
-#   - --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS
-#   - --region=$_DEPLOY_REGION
-#   - --quiet
-#   entrypoint: gcloud
-#   id: Deploy
-#   name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
-
-
-# # https://cloud.google.com/build/docs/interacting-with-dockerhub-images#pushing_images_to_docker_hub
+# Refrences:
+# https://cloud.google.com/build/docs/configuring-builds/create-basic-configuration
+# https://cloud.google.com/build/docs/interacting-with-dockerhub-images#pushing_images_to_docker_hub
+# https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values
