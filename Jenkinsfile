@@ -19,7 +19,7 @@ pipeline {
             steps {
                 container('jnlp'){
                     sh "docker build . -t ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}"
+                    sh "docker tag docker.build${IMAGE_NAME}:${IMAGE_TAG} docker.build${IMAGE_NAME}"
                 }
             }
         }
