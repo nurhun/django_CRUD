@@ -27,7 +27,8 @@ pipeline {
             steps {
                 script {                  
                     withDockerRegistry(credentialsId: 'DockerHub') {
-                        sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+                        sh "docker tag -t ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_TAG}:latest"
+                        sh "docker push ${IMAGE_NAME}"
                     }
                 }
             }
