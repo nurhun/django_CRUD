@@ -19,7 +19,7 @@ pipeline {
             steps {
                 container('jnlp'){
                     sh "docker build . -t ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} nurhun/django_crud:latest "
+                    sh "docker tag '${IMAGE_NAME}:${IMAGE_TAG}' nurhun/django_crud:latest "
                 }
             }
         }
