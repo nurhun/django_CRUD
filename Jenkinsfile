@@ -11,7 +11,6 @@ pipeline {
         IMAGE_NAME = "nurhun/django_crud"
         COMMIT_SHA = getCommitSHA()
         IMAGE_TAG = "v${BUILD_NUMBER}.${COMMIT_SHA}"
-        // IMAGE_TAG = "v0.2"
     }
     
     stages {

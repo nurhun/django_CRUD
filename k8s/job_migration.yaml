@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: nurhun/django_crud:v0.2
+          image: nurhun/django_crud
           imagePullPolicy: Always
           command: ['python', 'manage.py', 'migrate']
           env:
