@@ -94,3 +94,5 @@ spec:
   selector:
     app: crud
   type: LoadBalancer
+
+# Refrence: https://markgituma.medium.com/kubernetes-local-to-production-with-django-3-postgres-with-migrations-on-minikube-31f2baa8926e

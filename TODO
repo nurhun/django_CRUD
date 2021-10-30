@@ -1,6 +1,6 @@
 1- migration job >> Done
 2- Jenkinsfile >> Done
-3- cloudbuild file
+3- cloudbuild file >> Done
 4- application file >> Done
 5- fix agent in jenkins helm instal
 
