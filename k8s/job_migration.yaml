@@ -10,6 +10,7 @@ spec:
       containers:
         - name: django
           image: nurhun/django_crud:v0.2
+          imagePullPolicy: Always
           command: ['python', 'manage.py', 'migrate']
           env:
           - name: POSTGRES_HOST
