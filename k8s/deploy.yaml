@@ -26,7 +26,7 @@ spec:
         app: crud
     spec:
       containers:
-      - image: nurhun/django_crud:v0.1
+      - image: nurhun/django_crud:v0.2
         imagePullPolicy: IfNotPresent
         name: crud
         ports:
