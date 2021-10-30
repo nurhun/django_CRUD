@@ -1,5 +1,7 @@
-1- migration job
-2- Jenkinsfile
-3- cloudbuild file
-4- application file
-5- 
+1- migration job >> Done
+2- Jenkinsfile >> Done, add build number & commit SHA
+3- cloudbuild file 
+4- application file >> need test
+5- fix agent in jenkins helm instal
+
+Reference: https://markgituma.medium.com/kubernetes-local-to-production-with-django-3-postgres-with-migrations-on-minikube-31f2baa8926e

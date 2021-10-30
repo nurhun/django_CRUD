@@ -9,7 +9,9 @@ pipeline {
     
     environment {
         IMAGE_NAME = "nurhun/django_crud"
-        IMAGE_TAG = "v0.2"
+        COMMIT_SHA = getCommitSHA()
+        IMAGE_TAG = "v${BUILD_NUMBER}.${COMMIT_SHA}"
+        // IMAGE_TAG = "v0.2"
     }
     
     stages {
@@ -20,7 +22,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Push') {
             steps {
                 script {                  
@@ -32,4 +34,10 @@ pipeline {
         }
         
     }
+}
+
+// Get the commit SHA hash number to easily identify the exact commit where the image was build.
+def getCommitSHA(){
+    def sha  = sh script: 'git rev-parse --short HEAD', returnStdout: true
+    return sha
 }
