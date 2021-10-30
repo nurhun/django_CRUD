@@ -41,6 +41,8 @@ pipeline {
 
 // Get the commit SHA hash number to easily identify the exact commit where the image was build.
 def getCommitSHA(){
-    def sha  = sh script: 'git rev-parse --short HEAD', returnStdout: true
-    return sha
+    // def sha  = sh script: 'git rev-parse --short HEAD', returnStdout: true
+    // return sha
+    sh "git rev-parse HEAD > .git/current-commit"
+    return readFile(".git/current-commit").trim()
 }
