@@ -17,7 +17,7 @@ spec:
   syncPolicy:
     automated: 
       # Prune Resources if true, Argo will delete resources if they are no longer defined in Git.
-      prune: false
+      prune: true
       # Self Heal if true, Argo will force the state defined in Git into the cluster when a deviation in the cluster is detected.
       selfHeal: true
     syncOptions:
@@ -25,8 +25,8 @@ spec:
     - CreateNamespace=true
     - PrunePropagationPolicy=foreground
     # - PruneLast=true
-    # retry:
-    #   limit: 5
+    retry:
+      # limit: 5
     #   backoff:
     #     duration: 5s
     #     factor: 2
