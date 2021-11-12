@@ -159,28 +159,28 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# tracer_provider = TracerProvider()
-# cloud_trace_exporter = CloudTraceSpanExporter()
-# tracer_provider.add_span_processor(
-#     # BatchSpanProcessor buffers spans and sends them in batches in a
-#     # background thread. The default parameters are sensible, but can be
-#     # tweaked to optimize your performance
-#     BatchSpanProcessor(cloud_trace_exporter)
-# )
-# trace.set_tracer_provider(tracer_provider)
-
-# tracer = trace.get_tracer(__name__)
-
-
-trace.set_tracer_provider(TracerProvider())
-
-cloud_trace_exporter = CloudTraceSpanExporter(
-    project_id='nifty-bird-321722',
-)
-trace.get_tracer_provider().add_span_processor(
+tracer_provider = TracerProvider()
+cloud_trace_exporter = CloudTraceSpanExporter()
+tracer_provider.add_span_processor(
+    # BatchSpanProcessor buffers spans and sends them in batches in a
+    # background thread. The default parameters are sensible, but can be
+    # tweaked to optimize your performance
     BatchSpanProcessor(cloud_trace_exporter)
 )
+trace.set_tracer_provider(tracer_provider)
+
 tracer = trace.get_tracer(__name__)
+
+############################################################
+# trace.set_tracer_provider(TracerProvider())
+
+# cloud_trace_exporter = CloudTraceSpanExporter(
+#     project_id='nifty-bird-321722',
+# )
+# trace.get_tracer_provider().add_span_processor(
+#     BatchSpanProcessor(cloud_trace_exporter)
+# )
+# tracer = trace.get_tracer(__name__)
 
 ############################################################
 # trace.set_tracer_provider(
@@ -207,3 +207,4 @@ tracer = trace.get_tracer(__name__)
 
 # # add to the tracer
 # trace.get_tracer_provider().add_span_processor(span_processor)
+############################################################
