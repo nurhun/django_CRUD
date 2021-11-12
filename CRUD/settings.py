@@ -12,10 +12,26 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+# import time
+# from opentelemetry import trace
+# from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
+# from opentelemetry.propagate import set_global_textmap
+# from opentelemetry.propagators.cloud_trace_propagator import (
+#     CloudTraceFormatPropagator,
+# )
+# from opentelemetry.sdk.trace import TracerProvider
+# from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
 from opentelemetry import trace
 from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+# from opentelemetry import trace
+# from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+# from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+# from opentelemetry.sdk.trace import TracerProvider
+# from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,14 +159,51 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-tracer_provider = TracerProvider()
-cloud_trace_exporter = CloudTraceSpanExporter()
-tracer_provider.add_span_processor(
-    # BatchSpanProcessor buffers spans and sends them in batches in a
-    # background thread. The default parameters are sensible, but can be
-    # tweaked to optimize your performance
+# tracer_provider = TracerProvider()
+# cloud_trace_exporter = CloudTraceSpanExporter()
+# tracer_provider.add_span_processor(
+#     # BatchSpanProcessor buffers spans and sends them in batches in a
+#     # background thread. The default parameters are sensible, but can be
+#     # tweaked to optimize your performance
+#     BatchSpanProcessor(cloud_trace_exporter)
+# )
+# trace.set_tracer_provider(tracer_provider)
+
+# tracer = trace.get_tracer(__name__)
+
+
+trace.set_tracer_provider(TracerProvider())
+
+cloud_trace_exporter = CloudTraceSpanExporter(
+    project_id='nifty-bird-321722',
+)
+trace.get_tracer_provider().add_span_processor(
     BatchSpanProcessor(cloud_trace_exporter)
 )
-trace.set_tracer_provider(tracer_provider)
-
 tracer = trace.get_tracer(__name__)
+
+############################################################
+# trace.set_tracer_provider(
+# TracerProvider(
+#         resource=Resource.create({SERVICE_NAME: "my-helloworld-service"})
+#     )
+# )
+# tracer = trace.get_tracer(__name__)
+
+# # create a JaegerExporter
+# jaeger_exporter = JaegerExporter(
+#     # configure agent
+#     agent_host_name='localhost',
+#     agent_port=6831,
+#     # optional: configure also collector
+#     # collector_endpoint='http://localhost:14268/api/traces?format=jaeger.thrift',
+#     # username=xxxx, # optional
+#     # password=xxxx, # optional
+#     # max_tag_value_length=None # optional
+# )
+
+# # Create a BatchSpanProcessor and add the exporter to it
+# span_processor = BatchSpanProcessor(jaeger_exporter)
+
+# # add to the tracer
+# trace.get_tracer_provider().add_span_processor(span_processor)
