@@ -25,7 +25,7 @@ spec:
     - CreateNamespace=true
     - PrunePropagationPolicy=foreground
     # - PruneLast=true
-    retry:
+    # retry:
       # limit: 5
     #   backoff:
     #     duration: 5s
