@@ -88,9 +88,9 @@ metadata:
     app: crud
 spec:
   ports:
-  - port: 8000
+  - port: 80
+    targetPort: 8080
     protocol: TCP
-    name: django-port
   selector:
     app: crud
   type: LoadBalancer
